@@ -36,12 +36,13 @@ docker run -it --net=host --gpus all \
     --env="QT_X11_NO_MITSHM=1" \
     --env="XAUTHORITY=$XAUTH" \
     --volume="$XAUTH:$XAUTH:rw" \
-    --volume="$PWD:/host"\
+    --volume="$PWD/../..:/host"\
     --device="/dev/video0:/dev/video0" \
     --group-add video \
     --privileged \
     --user="$(id -u):$(id -g)" \
     detectron2:main \
-     /usr/bin/python3 demo/demo.py --config configs/COCO-PanopticSegmentation/panoptic_fpn_R_50_3x.yaml \
-    "$@"\
-     --opts MODEL.WEIGHTS detectron2://COCO-PanopticSegmentation/panoptic_fpn_R_50_3x/139514569/model_final_c10459.pkl
+    /bin/bash
+#      /usr/bin/python3 demo/demo.py --config configs/COCO-PanopticSegmentation/panoptic_fpn_R_50_3x.yaml \
+#     "$@"\
+#      --opts MODEL.WEIGHTS detectron2://COCO-PanopticSegmentation/panoptic_fpn_R_50_3x/139514569/model_final_c10459.pkl
